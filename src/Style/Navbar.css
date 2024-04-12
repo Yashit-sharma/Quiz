@@ -1,0 +1,17 @@
+html{
+    background-color: black;
+    color: white;
+}
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.nav-container{
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-links{
+    font-size: 20px;
+}

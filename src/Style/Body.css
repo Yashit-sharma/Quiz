@@ -1,0 +1,60 @@
+.body-container{
+    height: calc(100vh - 129px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.questions-card{
+    padding: 50px 0px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.question{
+    font-size: 16px;
+    text-align: justify;
+    width: 80%;
+    padding: 20px 10px;
+}
+.options{
+    padding: 20px 10px;
+    width: 65%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 18px;
+}
+.options > span{
+    font-size: 22px;
+    padding: 20px;
+    /* padding: 30px 20px; */
+    border: 1.5px solid rgba(255, 255, 255, 0.569);
+}
+.color{
+    border: 1.5px solid rgb(126, 233, 233)!important;
+    color: paleturquoise;
+}
+.buttons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.btn{
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+.Q-mark{
+    font-size: 20px;
+    position: relative;
+    bottom: 10px;
+    color: palegoldenrod;
+}
+#green{
+    border: 2px solid springgreen !important;
+}
