@@ -36,7 +36,7 @@
 }
 .color{
     border: 1.5px solid red!important;
-    background: rgba(255, 0, 0, 0.302);
+    /* background: rgba(255, 0, 0, 0.302); */
     color: white;
 }
 .buttons{
@@ -60,7 +60,7 @@
 }
 #green{
     border: 2px solid springgreen !important;
-    background: rgba(0, 255, 128, 0.272);
+    /* background: rgba(0, 255, 128, 0.272); */
 }
 
 

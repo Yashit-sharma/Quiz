@@ -7,14 +7,17 @@ import Left from '../Assets/Left.svg'
 import Right from '../Assets/Right.svg'
 
 export default function Body() {
-    // const [Answers, setAnswers] = useState(new Array(Data.length).fill(null))
     const [SubmitBtn, setSubmitBtn] = useState(false)
     const [Complete, setComplete] = useState(JSON.parse(localStorage.getItem("Quiz-Complete")) || false)
-    const [Marks, setMarks] = useState(0)
+    const [Final_Marks, setFinal_Marks] = useState(JSON.parse(localStorage.getItem("Quiz-Marks") || 0))
     const [Answers, setAnswers] = useState(JSON.parse(localStorage.getItem("Quiz-Ans"))
     || new Array(Data.length).fill(null))
     const [iter, setiter] = useState(0)
     const [answered, setanswered] = useState(null)
+
+    // if(Complete){
+    //     alert(`You Scored ${Final_Marks} Marks`)
+    // }
     const handleAnswer = (e,i,ele) =>{
         setanswered(ele);
     }
@@ -31,13 +34,10 @@ export default function Body() {
         setAnswers(updatedAnswers);
         setanswered(null);
         if(answered == Data[iter].Answer){
-            console.log(`${answered}` + `${Data[iter].Answer}`)
-            console.log('Correct Answer')
-            setMarks(prev => prev + 1);
+            // console.log('Correct Answer')
         }
         else{
-            console.log('Incorrect')
-            setMarks(prev => prev - 1);
+            // console.log('Incorrect')
         }
         setiter(prev => prev + 1);
     }
@@ -52,6 +52,7 @@ export default function Body() {
         setanswered(null);
         setiter(prev => prev - 1);
         }
+        else
         setiter(prev => prev - 1); 
     }
     const handleSave = () =>{
@@ -60,29 +61,37 @@ export default function Body() {
         setAnswers(updatedAnswers);
         setanswered(null);
         setSubmitBtn(true);
-        if(answered == Data[iter].Answer){
-            setMarks(prev => prev + 1);
-        }
-        else if (answered == null){
-            console.log('null')
-        }
-        else if(answered != Data[iter].Answer){ 
-            setMarks(prev => prev - 1);
-        }
         alert(`Your Test Has Been Saved`);
     }
     const handleSubmit =  () =>{
-        alert(`You Scored ${Marks} Marks`)
+        handleMarks();
         setTimeout(() => {
             setComplete(true);
+            setiter(0);
         }, 1000);
-        
-        window.location.reload();
+    }
+    const handleMarks = () =>{
+        for(let i=0;i<Data.length;i++){
+            if(Answers[i] == Data[i].Answer){
+                setFinal_Marks(prev => prev + 1)
+            }
+            else if (Answers[i] != Data[i].Answer){
+                if(Answers[i] == null){
+                    continue
+                }
+                else{
+                setFinal_Marks(prev => prev - 1)
+                }
+            }
+            else{
+                continue;
+            }
+        }
     }
     // useEffect(() => {
-    // console.log(Answers)
-    // console.log(`The current Score is : `+`${Marks}`)
-    // console.log(SubmitBtn)
+    // // console.log(Answers)
+    // // console.log(`The current Score is : `+`${Final_Marks}`)
+    // console.log(iter)
     // }, [Answers]);
 
     useEffect(() => {
@@ -90,13 +99,14 @@ export default function Body() {
       }, [Answers]);
       useEffect(() => {
         localStorage.setItem("Quiz-Complete", JSON.stringify(Complete));
+        localStorage.setItem("Quiz-Marks", JSON.stringify(Final_Marks));
       }, [Complete]);
     
   return (
     <>
-    {/* <button className='btn' onClick={()=>{clearStorage()}}>Give Again</button> */}
     <div className="body-container">
         <div className="questions-card">
+            {Complete && <div className="marks">{Final_Marks}</div>}
             <div className="question">
                 <span className='Q-mark'>Q{iter+1}</span> <br></br>
                 <p>{Data[iter].Question}</p>
@@ -140,7 +150,7 @@ export default function Body() {
                </button> :<></>
                }
                {iter < Data.length-1 ? <button className='btn' onClick={()=>{handleNext()}}>
-               <img src={Right} height={30} alt="" /></button> : ''}
+               <img alt=">" src={Right} height={30} /></button> : ''}
                </div>
                }
         </div>
@@ -148,34 +158,4 @@ export default function Body() {
     
     </>
   )
-}
-
-
-
- {/* {Data.map((ele,i) =>{
-                return(
-                    <>
-                    <div className="question" key={ele.Id}>
-                        {ele.Question}
-                    </div>
-                    <div>
-                        <span>{ele.Options.map((ele)=>{
-                            return(
-                                <>
-                                <div className='answers'>{ele}</div>
-                                </>
-                            )
-                        })}</span>
-                    </div>
-                    </>
-                )
-            })} */
-}
-// const selected = e.currentTarget.dataset.value;
-// console.log(e.currentTarget.dataset.value);
-
-{/*             <span data-value={1} className={`color click`} onClick={(e,value)=>{handleAnswer(e,value)}}>               Answer number 1</span>
-                <span data-value={2} className='click' onClick={(e,value)=>{handleAnswer(e,value)}}>Answer number 2</span>
-                <span data-value={3} className='click' onClick={(e,value)=>{handleAnswer(e,value)}}>Answer number 3</span>
-                <span data-value={4} className='click' onClick={(e,value)=>{handleAnswer(e,value)}}>Answer number 4</span> */
 }

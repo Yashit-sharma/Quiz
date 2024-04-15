@@ -15,3 +15,6 @@ html{
 .nav-links{
     font-size: 20px;
 }
+.nav-logo{
+    cursor: pointer;
+}
