@@ -14,10 +14,7 @@ export default function Body() {
     || new Array(Data.length).fill(null))
     const [iter, setiter] = useState(0)
     const [answered, setanswered] = useState(null)
-
-    // if(Complete){
-    //     alert(`You Scored ${Final_Marks} Marks`)
-    // }
+    
     const handleAnswer = (e,i,ele) =>{
         setanswered(ele);
     }
@@ -73,7 +70,7 @@ export default function Body() {
     const handleMarks = () =>{
         for(let i=0;i<Data.length;i++){
             if(Answers[i] == Data[i].Answer){
-                setFinal_Marks(prev => prev + 1)
+                setFinal_Marks(prev => prev + 5)
             }
             else if (Answers[i] != Data[i].Answer){
                 if(Answers[i] == null){
