@@ -1,5 +1,5 @@
 .body-container{
-    height: calc(100vh - 129px);
+    height: calc(100dvh - 129px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
 }
 .questions-card{
     padding: 50px 0px;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,12 +28,15 @@
 }
 .options > span{
     font-size: 22px;
-    padding: 20px;
+    padding: 10px 20px;
+    border-radius: 100vw;
+
     /* padding: 30px 20px; */
     border: 1.5px solid rgba(255, 255, 255, 0.569);
 }
 .color{
     border: 1.5px solid red!important;
+    background: rgba(255, 0, 0, 0.302);
     color: white;
 }
 .buttons{
@@ -57,4 +60,24 @@
 }
 #green{
     border: 2px solid springgreen !important;
+    background: rgba(0, 255, 128, 0.272);
+}
+
+
+@media screen and (max-width:600px){
+    .questions-card{
+        padding: 0px 0px;
+    }
+    .question{
+        font-size: 15px;
+    }
+    .options{
+        display: flex;
+        flex-direction:column ;
+    }
+    .options > span{
+        padding: 10px;
+        border-radius: 100vw;
+        font-size: 15px;
+    }
 }

@@ -73,11 +73,10 @@ export default function Body() {
     }
     const handleSubmit =  () =>{
         alert(`You Scored ${Marks} Marks`)
-        setComplete(true);
-        window.location.reload();
-    }
-    const clearStorage = () =>{
-        localStorage.clear();
+        setTimeout(() => {
+            setComplete(true);
+        }, 1000);
+        
         window.location.reload();
     }
     // useEffect(() => {
@@ -95,8 +94,7 @@ export default function Body() {
     
   return (
     <>
-    <span>{SubmitBtn}</span>
-    <button className='btn' onClick={()=>{clearStorage()}}>Give Again</button>
+    {/* <button className='btn' onClick={()=>{clearStorage()}}>Give Again</button> */}
     <div className="body-container">
         <div className="questions-card">
             <div className="question">
