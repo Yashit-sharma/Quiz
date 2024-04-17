@@ -11,10 +11,24 @@ html{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
 }
 .nav-links{
     font-size: 20px;
 }
 .nav-logo{
+    /* border: 2px solid springgreen; */
     cursor: pointer;
+}
+.nav-logo > img{
+    height: 100%;
+}
+@media screen and (max-width:600px){
+    .nav-container{
+        height: 90px;
+        margin-bottom: 10px;
+    }
+    .nav-logo{
+        height: 80px;
+    }
 }

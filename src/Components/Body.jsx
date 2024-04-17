@@ -14,7 +14,6 @@ export default function Body() {
     || new Array(Data.length).fill(null))
     const [iter, setiter] = useState(0)
     const [answered, setanswered] = useState(null)
-    
     const handleAnswer = (e,i,ele) =>{
         setanswered(ele);
     }
@@ -30,12 +29,6 @@ export default function Body() {
         updatedAnswers[iter] = answered;
         setAnswers(updatedAnswers);
         setanswered(null);
-        if(answered == Data[iter].Answer){
-            // console.log('Correct Answer')
-        }
-        else{
-            // console.log('Incorrect')
-        }
         setiter(prev => prev + 1);
     }
     else 
@@ -60,13 +53,6 @@ export default function Body() {
         setSubmitBtn(true);
         alert(`Your Test Has Been Saved`);
     }
-    const handleSubmit =  () =>{
-        handleMarks();
-        setTimeout(() => {
-            setComplete(true);
-            setiter(0);
-        }, 1000);
-    }
     const handleMarks = () =>{
         for(let i=0;i<Data.length;i++){
             if(Answers[i] == Data[i].Answer){
@@ -85,12 +71,14 @@ export default function Body() {
             }
         }
     }
-    // useEffect(() => {
-    // // console.log(Answers)
-    // // console.log(`The current Score is : `+`${Final_Marks}`)
-    // console.log(iter)
-    // }, [Answers]);
-
+    const handleSubmit =  () =>{
+        handleMarks();
+        setTimeout(() => {
+            setComplete(true);
+            setiter(0);
+        }, 1000);
+    }
+   
     useEffect(() => {
         localStorage.setItem("Quiz-Ans", JSON.stringify(Answers));
       }, [Answers]);
@@ -103,7 +91,7 @@ export default function Body() {
     <>
     <div className="body-container">
         <div className="questions-card">
-            {Complete && <div className="marks">{Final_Marks}</div>}
+            {Complete && <div className="marks">You Scored : {Final_Marks} Marks</div>}
             <div className="question">
                 <span className='Q-mark'>Q{iter+1}</span> <br></br>
                 <p>{Data[iter].Question}</p>
